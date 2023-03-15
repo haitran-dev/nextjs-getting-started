@@ -5,6 +5,8 @@ import { getAllPostIds, getPostData } from '../../lib/posts';
 import utilStyles from '../../styles/utils.module.css';
 
 export default function Post({ postData }) {
+    if (!postData) return null;
+
     return (
         <Layout>
             <Head>
@@ -31,7 +33,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const postData = await getPostData(params.id);
-    console.log({ postData });
     return {
         props: {
             postData,
